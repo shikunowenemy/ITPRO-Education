@@ -86,7 +86,6 @@ while (sumDistance < targetDistance)
 {
     sumDistance += userDistance;
     userDistance = userDistance / 100 * (100 + stepDistance);
-    Console.WriteLine(sumDistance);
     day++;
 }
 day--;
