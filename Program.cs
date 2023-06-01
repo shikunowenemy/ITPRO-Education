@@ -30,6 +30,7 @@ while (true)
         {
             Console.Write(i + " ");
         }
+        Console.WriteLine();
     }
 
     break;
@@ -71,6 +72,7 @@ while (true)
             {
                 Console.Write(fibonacciNumbers[i] + " ");
             }
+            Console.WriteLine();
             break;
     }
     break;
@@ -84,6 +86,10 @@ while (sumDistance < targetDistance)
 {
     sumDistance += userDistance;
     userDistance = userDistance / 100 * (100 + stepDistance);
+    Console.WriteLine(sumDistance);
     day++;
 }
+day--;
+
+Console.WriteLine($"{targetDistance} км лыжник пробежит в {day} день");
 
