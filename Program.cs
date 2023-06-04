@@ -17,7 +17,7 @@ while (true)
     students[studentID]["Информатика"] = int.Parse(Console.ReadLine());
     Console.Write("Введите оценку по разработке игр: ");
     students[studentID]["Разработка игр"] = int.Parse(Console.ReadLine());
-    Console.Write("Введите оценку по основам алгоритмизации ");
+    Console.Write("Введите оценку по основам алгоритмизации: ");
     students[studentID]["Основы алгоритмизации"] = int.Parse(Console.ReadLine());
     studentID++;
     Console.WriteLine("Продолжить? y/n");
