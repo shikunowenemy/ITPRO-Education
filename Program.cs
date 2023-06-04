@@ -33,10 +33,10 @@ while (true)
 }
 
 studentID = 0;
-foreach (var student in students)
+foreach (var grades in students)
 {
     Console.Write($"Ученик с id {studentID}");
-    foreach (var grade in student)
+    foreach (var grade in grades)
     {
         Console.Write($"|{grade.Key}|{grade.Value}|");
     }
