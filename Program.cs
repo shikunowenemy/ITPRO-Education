@@ -1,94 +1,85 @@
-﻿bool isCorrectValue;
+﻿// Задание №1
 
-Console.WriteLine("------Задание 1------");
-int startNumber, endNumber;
+List<Dictionary<string, int>> students = new();
+int studentID = 0;
 
 while (true)
 {
-    Console.Write("Введите начальное число диапазона: ");
-    isCorrectValue = int.TryParse(Console.ReadLine(), out startNumber);
-
-    if (!isCorrectValue)
+    Dictionary<string, int> grades = new()
     {
-        Console.WriteLine("Вы ввели некорретное значение");
+        { "Информатика", 0 },
+        { "Разработка игр", 0 },
+        { "Основы алгоритмизации", 0 }
+    };
+    students.Add(grades);
+    Console.WriteLine($"Студент с id {studentID}");
+    Console.Write("Введите оценку по информатике: ");
+    students[studentID]["Информатика"] = int.Parse(Console.ReadLine());
+    Console.Write("Введите оценку по разработке игр: ");
+    students[studentID]["Разработка игр"] = int.Parse(Console.ReadLine());
+    Console.Write("Введите оценку по основам алгоритмизации ");
+    students[studentID]["Основы алгоритмизации"] = int.Parse(Console.ReadLine());
+    studentID++;
+    Console.WriteLine("Продолжить? y/n");
+    string userAnswer = Console.ReadLine();
+    if (userAnswer == "y")
+    {
         continue;
     }
-
-    Console.Write("Введите конечное число диапазона: ");
-    isCorrectValue = int.TryParse(Console.ReadLine(), out endNumber);
-
-    if (!isCorrectValue || endNumber < startNumber)
+    else
     {
-        Console.WriteLine("Вы ввели некорретное значение");
-        continue;
+        break;
     }
-
-    for (int i = startNumber; i <= endNumber; i++)
-    {
-        int reminder = i % 2;
-        if (reminder != 0)
-        {
-            Console.Write(i + " ");
-        }
-        Console.WriteLine();
-    }
-
-    break;
 }
 
-Console.WriteLine("------Задание 2------");
-while (true)
+studentID = 0;
+foreach (var student in students)
 {
-    int userFibonacciLength;
-
-    Console.Write("Введите длину последовательности чисел Фибоначи: ");
-    isCorrectValue = int.TryParse(Console.ReadLine(), out userFibonacciLength);
-
-    if (!isCorrectValue || userFibonacciLength < 0)
+    Console.Write($"Ученик с id {studentID}");
+    foreach (var grade in student)
     {
-        Console.WriteLine("Вы ввели некорретное значение");
-        continue;
+        Console.Write($"|{grade.Key}|{grade.Value}|");
     }
-
-    switch (userFibonacciLength)
-    {
-        case 0:
-            Console.WriteLine(0);
-            break;
-        case 1:
-            Console.WriteLine(0 + " " + 1);
-            break;
-        default:
-            int[] fibonacciNumbers = new int[userFibonacciLength];
-            fibonacciNumbers[0] = 0;
-            fibonacciNumbers[1] = 1;
-
-            for (int i = 2; i < fibonacciNumbers.Length; i++)
-            {
-                fibonacciNumbers[i] = fibonacciNumbers[i - 1] + fibonacciNumbers[i - 2];
-            }
-
-            for (int i = 0; i < fibonacciNumbers.Length; i++)
-            {
-                Console.Write(fibonacciNumbers[i] + " ");
-            }
-            Console.WriteLine();
-            break;
-    }
-    break;
+    studentID++;
+    Console.WriteLine();
 }
 
-Console.WriteLine("------Задание 3------");
+// Задание 2
 
-int day = 1;
-double userDistance = 10, stepDistance = 10, targetDistance = 100, sumDistance = 0;
-while (sumDistance < targetDistance)
+Random random = new();
+List<int> numbers = new();
+int arrayLength;
+
+Console.Write("Введите длину массива: ");
+arrayLength = int.Parse(Console.ReadLine());
+
+for (int i = 0; i < arrayLength; i++)
 {
-    sumDistance += userDistance;
-    userDistance = userDistance / 100 * (100 + stepDistance);
-    day++;
+    numbers.Add(random.Next(-5, 5));
 }
-day--;
 
-Console.WriteLine($"{targetDistance} км лыжник пробежит в {day} день");
-
+Console.WriteLine("Вывод всех элементов массива");
+foreach (int number in numbers)
+{
+    Console.Write(number + " ");
+}
+Console.WriteLine("\nВывод массива в обратном порядке");
+for (int i = numbers.Count - 1;i >= 0; i--)
+{
+    Console.Write(numbers[i] + " ");
+}
+Console.WriteLine("\nВывод массива через 1");
+for (int i = 0; i < numbers.Count; i+=2)
+{
+    Console.Write(numbers[i] + " ");
+}
+Console.WriteLine("\nВывод массива пока не встретится -1");
+for (int i = 0; i < numbers.Count; i ++)
+{
+    if (numbers[i] == -1)
+    {
+        Console.WriteLine("\nВстретился элемент -1");
+        break;
+    }
+    Console.Write(numbers[i] + " ");
+}
