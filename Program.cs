@@ -1,85 +1,66 @@
-﻿// Задание №1
+﻿using System.Linq;
 
-List<Dictionary<string, int>> students = new();
-int studentID = 0;
+double deposit, depositAmount;
+List<double> holdings = new();
+bool isCorrectValue;
+double reward = 0;
+
+Console.Write("Введите начальный вклад: ");
 
 while (true)
 {
-    Dictionary<string, int> grades = new()
+    isCorrectValue = double.TryParse(Console.ReadLine(), out deposit);
+    if (!isCorrectValue || deposit <= 0)
     {
-        { "Информатика", 0 },
-        { "Разработка игр", 0 },
-        { "Основы алгоритмизации", 0 }
-    };
-    students.Add(grades);
-    Console.WriteLine($"Студент с id {studentID}");
-    Console.Write("Введите оценку по информатике: ");
-    students[studentID]["Информатика"] = int.Parse(Console.ReadLine());
-    Console.Write("Введите оценку по разработке игр: ");
-    students[studentID]["Разработка игр"] = int.Parse(Console.ReadLine());
-    Console.Write("Введите оценку по основам алгоритмизации: ");
-    students[studentID]["Основы алгоритмизации"] = int.Parse(Console.ReadLine());
-    studentID++;
-    Console.WriteLine("Продолжить? y/n");
-    string userAnswer = Console.ReadLine();
-    if (userAnswer == "y")
-    {
+        Console.WriteLine("Вы ввели некорректное значение");
         continue;
     }
-    else
+    break;
+}
+
+holdings.Add(deposit);
+
+Console.Write("Введите размер вклада: ");
+
+while (true)
+{
+    isCorrectValue = double.TryParse(Console.ReadLine(), out depositAmount);
+    if (!isCorrectValue || depositAmount <= 0)
     {
-        break;
+        Console.WriteLine("Вы ввели некорректное значение");
+        continue;
     }
+    break;
 }
 
-studentID = 0;
-foreach (var grades in students)
+while (reward < 30)
 {
-    Console.Write($"Ученик с id {studentID}");
-    foreach (var grade in grades)
-    {
-        Console.Write($"|{grade.Key}|{grade.Value}|");
-    }
-    studentID++;
-    Console.WriteLine();
+    GetReward(holdings, depositAmount, ref reward);
+}
+int month = holdings.Count - 1;
+
+if (month > 12)
+{
+    
+}
+else
+{
+    
 }
 
-// Задание 2
-
-Random random = new();
-List<int> numbers = new();
-int arrayLength;
-
-Console.Write("Введите длину массива: ");
-arrayLength = int.Parse(Console.ReadLine());
-
-for (int i = 0; i < arrayLength; i++)
+foreach (var holding in holdings)
 {
-    numbers.Add(random.Next(-5, 5));
+    Console.WriteLine(holding);
 }
 
-Console.WriteLine("Вывод всех элементов массива");
-foreach (int number in numbers)
+void GetReward (List<double> holdings, double depositAmount, ref double reward)
 {
-    Console.Write(number + " ");
+    reward = holdings.Last() / 100 * depositAmount;
+    holdings.Add(holdings.Last() + reward);
 }
-Console.WriteLine("\nВывод массива в обратном порядке");
-for (int i = numbers.Count - 1;i >= 0; i--)
+
+string PrintMonth (int month)
 {
-    Console.Write(numbers[i] + " ");
-}
-Console.WriteLine("\nВывод массива через 1");
-for (int i = 0; i < numbers.Count; i+=2)
-{
-    Console.Write(numbers[i] + " ");
-}
-Console.WriteLine("\nВывод массива пока не встретится -1");
-for (int i = 0; i < numbers.Count; i ++)
-{
-    if (numbers[i] == -1)
-    {
-        Console.WriteLine("\nВстретился элемент -1");
-        break;
-    }
-    Console.Write(numbers[i] + " ");
+    if (month == 0)
+    return "";
 }
