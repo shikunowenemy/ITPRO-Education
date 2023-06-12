@@ -1,66 +1,17 @@
-﻿using System.Linq;
+﻿List<string> _cargo = new List<string> { "Шоколадки, печеньки, чай" };
+PassengerAirplane _passengerAirplane = new PassengerAirplane("Москва – Казань", 15000, 30, "Аэрофлот", "911", 3000, 10000);
+CargoAirplane _cargoAirplane = new CargoAirplane(10000, _cargo, 100, 20, "Airobus", "129-227", 2000, 6000);
+PassengerCar _passengerCar = new PassengerCar("Premium", 'B', 200, "Jaguar", "X-Trail", 900, 400);
+Truck _truck = new Truck(500, _cargo, 'D', 80, "Mercedes", "670", 1200, 120);
+Train _train = new Train(10, "РЖД", "Ласточка", 20000, 800);
 
-double deposit, depositAmount;
-List<double> holdings = new();
-bool isCorrectValue;
-double reward = 0;
-
-Console.Write("Введите начальный вклад: ");
-
-while (true)
-{
-    isCorrectValue = double.TryParse(Console.ReadLine(), out deposit);
-    if (!isCorrectValue || deposit <= 0)
-    {
-        Console.WriteLine("Вы ввели некорректное значение");
-        continue;
-    }
-    break;
-}
-
-holdings.Add(deposit);
-
-Console.Write("Введите размер вклада: ");
-
-while (true)
-{
-    isCorrectValue = double.TryParse(Console.ReadLine(), out depositAmount);
-    if (!isCorrectValue || depositAmount <= 0)
-    {
-        Console.WriteLine("Вы ввели некорректное значение");
-        continue;
-    }
-    break;
-}
-
-while (reward < 30)
-{
-    GetReward(holdings, depositAmount, ref reward);
-}
-int month = holdings.Count - 1;
-
-if (month > 12)
-{
-    
-}
-else
-{
-    
-}
-
-foreach (var holding in holdings)
-{
-    Console.WriteLine(holding);
-}
-
-void GetReward (List<double> holdings, double depositAmount, ref double reward)
-{
-    reward = holdings.Last() / 100 * depositAmount;
-    holdings.Add(holdings.Last() + reward);
-}
-
-string PrintMonth (int month)
-{
-    if (month == 0)
-    return "";
-}
+Console.WriteLine("Пассажирский самолет");
+_passengerAirplane.ShowInfo();
+Console.WriteLine("\nГрузовой самолет");
+_cargoAirplane.ShowInfo();
+Console.WriteLine("\nЛегковой автомобиль");
+_passengerCar.ShowInfo();
+Console.WriteLine("\nГрузовой автомобиль");
+_truck.ShowInfo();
+Console.WriteLine("\nПоезд");
+_train.ShowInfo();
